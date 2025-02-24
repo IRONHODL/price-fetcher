@@ -10,11 +10,7 @@ app.get('/prices', async (req, res) => {
     console.log('CoinGecko success:', cryptoRes.data);
     const btc = cryptoRes.data.bitcoin.usd;
     const eth = cryptoRes.data.ethereum.usd;
-    console.log('Fetching Alpha Vantage...');
-    const stockRes = await axios.get('https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=SPY&apikey=B0PS0FXDOC3RZV62');
-    console.log('Alpha Vantage success:', stockRes.data);
-    const sp500 = stockRes.data['Global Quote']['05. price'];
-    const response = `BTC: ${btc} | ETH: ${eth} | SP500: ${sp500}`;
+    const response = `BTC: ${btc} | ETH: ${eth}`;
     res.send(response);
   } catch (error) {
     console.log('Error details:', error.message, error.response ? error.response.data : 'No response data');
